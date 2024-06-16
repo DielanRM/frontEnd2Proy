@@ -1,4 +1,5 @@
 import './NavBar.scss'
+import { NavLink } from 'react-router-dom'
 
 function NavBar() {
   return (
@@ -6,9 +7,23 @@ function NavBar() {
         <div>Logo</div>
         <div className="nav__options">
             <ul>
-                <li>Home</li>
-                <li>nosotros</li>
-                <li>Contacto</li>
+                <li>
+                  <NavLink to={'/'}>
+                    Home
+                  </NavLink>
+                </li>
+                
+                <li>
+                  <NavLink to={'/login'}>
+                      Ingresa
+                  </NavLink>
+                </li>
+
+                <li>
+                  <NavLink to={'/signup'}>
+                    Registrate
+                  </NavLink>
+                </li>
             </ul>
         </div>
     </nav>
