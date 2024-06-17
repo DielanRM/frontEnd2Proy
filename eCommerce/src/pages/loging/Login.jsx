@@ -1,4 +1,5 @@
 import { useState } from "react"
+import './Login.scss'
 
 export default function Login() {
 //PASO 2.- CREAR ESTADOS PARA GUARDAR  VALORES DEÑ FOLRMULARIO  
@@ -20,12 +21,12 @@ const [mostrarPassword, setMostrarPassword] = useState(false)
 
   //PASO 1.- CREAR FORMULARIO BASE
     return (
-    <div>
-        <h1>Inicia sesion</h1>
-        <form onSubmit={handleSubmit}>
+    <div className="form-container">
+        <h1 className="form-container__title">Inicia sesion</h1>
+        <form onSubmit={handleSubmit} className="form">
           {/*PASO 3.- GUARDAR CADA CAMBIO DE CADA INPUT EN SU ESTADO CORRESPONDIENTE */}
-            <div>
-                <label htmlFor="email">email</label>
+            <div className="form__form-group">
+                <label htmlFor="email" className="form__form-group__label">email</label>
                 <input 
                     type="text"
                     name="email"
@@ -36,8 +37,8 @@ const [mostrarPassword, setMostrarPassword] = useState(false)
                 />
             </div>
 
-            <div>
-                <label htmlFor="contrasena">contrasena</label>
+            <div className="form__form-group">
+                <label htmlFor="contrasena" className="form__form-group__label">contrasena</label>
                 <input 
                     type={mostrarPassword ? 'text' : 'password'}
                     name="contrasena"
@@ -51,8 +52,8 @@ const [mostrarPassword, setMostrarPassword] = useState(false)
                 </button>
             </div>
 
-            <div>
-                <button type="submit">
+            <div className="form__form-group">
+                <button type="submit" className="form__form-group__button">
                     iniciar sesion
                 </button>
             </div>
