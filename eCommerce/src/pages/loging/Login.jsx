@@ -1,10 +1,11 @@
 import { useState } from "react"
+import { loginUserService } from "../../services/userServices.js"
 import './Login.scss'
 
 export default function Login() {
 //PASO 2.- CREAR ESTADOS PARA GUARDAR  VALORES DEÑ FOLRMULARIO  
 const [email, setEmail] = useState('')
-const [contrasena, setContrasena] = useState('')
+const [password, setPassword] = useState('')
 const [mostrarPassword, setMostrarPassword] = useState(false)
 
 //PASO 4.- CREAR UNA FUNCION QUE SE EJECUTARA CUANDO SE ENVIE EL FORMULARIO
@@ -12,11 +13,16 @@ const [mostrarPassword, setMostrarPassword] = useState(false)
     event.preventDefault()
     const datosEnviados = {
         email,
-        contrasena
+        password
     }
-    console.log(datosEnviados)
+    loginUserService(datosEnviados)
+        .then((res)=> {
+        //    console.log(res.data)
+        window.localStorage.setItem('token', res.data.token)// se guardo el token
+        })
+        .catch((error)=> console.error(error.message))
     setEmail('')
-    setContrasena('')
+    setPassword('')
  }
 
   //PASO 1.- CREAR FORMULARIO BASE
@@ -38,14 +44,14 @@ const [mostrarPassword, setMostrarPassword] = useState(false)
             </div>
 
             <div className="form__form-group">
-                <label htmlFor="contrasena" className="form__form-group__label">contrasena</label>
+                <label htmlFor="password" className="form__form-group__label">password</label>
                 <input 
                     type={mostrarPassword ? 'text' : 'password'}
-                    name="contrasena"
-                    id="contrasena"
+                    name="password"
+                    id="password"
                     placeholder="contrasena"
-                    value={contrasena}
-                    onChange={(evento)=>setContrasena(evento.target.value)}
+                    value={password}
+                    onChange={(evento)=>setPassword(evento.target.value)}
                 />
                 <button type="button" onClick={()=> setMostrarPassword(!mostrarPassword)}>
                     {mostrarPassword ? 'ocultar' : 'mostrar'}

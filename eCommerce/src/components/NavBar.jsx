@@ -1,5 +1,6 @@
-import './NavBar.scss'
+import { logOutUserService } from '../services/userServices.js';
 import { NavLink } from 'react-router-dom'
+import './NavBar.scss'
 
 function NavBar() {
   return (
@@ -23,6 +24,12 @@ function NavBar() {
                   <NavLink to={'/signup'}>
                     Registrate
                   </NavLink>
+                </li>
+
+                <li onClick={logOutUserService}>
+                  
+                    Logout
+                  
                 </li>
             </ul>
         </div>
