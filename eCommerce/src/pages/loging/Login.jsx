@@ -17,10 +17,10 @@ const [mostrarPassword, setMostrarPassword] = useState(false)
     }
     loginUserService(datosEnviados)
         .then((res)=> {
-        //    console.log(res.data)
-        window.localStorage.setItem('token', res.data.token)// se guardo el token
-        })
+            localStorage.setItem('token', res.data.token)})// se guardo el token
+        .then(()=> window.location.href = '/')//direcciona a la ruta raiz
         .catch((error)=> console.error(error.message))
+
     setEmail('')
     setPassword('')
  }

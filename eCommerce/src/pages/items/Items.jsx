@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getItems } from '../../services/itemServices.js';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Items.scss';
 
 export default function Items() {
@@ -9,10 +9,9 @@ export default function Items() {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        const getData = async ()=> {
+        const getData = async () => {
             try {
                 const response = await getItems()
-                console.log(response.data);
                 setItems(response.data)
                 setLoading(false)
             } catch (error) {
@@ -23,22 +22,23 @@ export default function Items() {
     }, [])
 
 
-    if(loading){
+    if (loading) {
         return <h1>Loading ...</h1>
-    }else{
-        <section className='items-container'>
-        <div className='items'>
-            {items.map(item => (
-            <Link to="detail-item">
-                    <div key={item.id} className='item'>
-                    <img src={item.image} />
-                    <h3>{item.product_name}</h3>
-                    <p>{item.price}</p>
+    } else {
+        return (
+            <section className='items-container'>
+                <div className='items'>
+                    {items.map(item => (
+                        <Link to={`/item/${item.id}`} key={item.id}>
+                            <div className='item'>
+                                <img src={item.image} />
+                                <h3>{item.product_name}</h3>
+                                <p>{item.price}</p>
+                            </div>
+                        </Link>
+                    ))}
                 </div>
-            </Link>
-            ))
-            }
-        </div>
-    </section>
+            </section>
+        )
     }
 }

@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react"
 import { getItem } from "../../services/itemServices"
+import { useParams } from "react-router-dom";
 
 export default function DetailItems() {
 
 const [item, setItem] = useState(true)
 const [loading, setLoading] = useState(true)
+const { id } = useParams()
 
 useEffect(()=>{
     const fetchData = async()=>{
         try {
-            const data = await getItem('5fbc19a65a3f794d72471163')
-            setItem(data)
+            const data = await getItem(id)
+            setItem(data.data)
             setLoading(false)
         } catch (error) {
             console.error('el error es:', error);
@@ -28,7 +30,7 @@ useEffect(()=>{
                 <div className='container'>
                     <div className='row'>
                         <div className='col'>
-                            <img src="" alt="" />
+                            <img src={item.image} alt="" />
                         </div>
                         <div className='col'>
                             <h3>{item.product_name}</h3>
