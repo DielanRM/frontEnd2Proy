@@ -12,10 +12,22 @@ const regiserUserService = (data)=>{
 
 const logOutUserService = ()=>{
     localStorage.removeItem('token')
+    window.location.href = '/'
+}
+
+const getUser = (token) => {
+    const config = {
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',        
+        },
+    }
+    return axios.get(`${BASE_URL}/users/me`, config)
 }
 
 export{ 
     loginUserService, 
     regiserUserService,
-    logOutUserService
+    logOutUserService,
+    getUser
  }

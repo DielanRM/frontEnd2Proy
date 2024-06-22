@@ -1,20 +1,26 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { logOutUserService } from '../services/userServices.js';
 import { NavLink } from 'react-router-dom'
 import { SiSurveymonkey } from "react-icons/si"
 import { FaDoorOpen } from "react-icons/fa6";
 import { useAuthContext } from '../context/AuthContext.jsx';
+import { getUser } from '../services/userServices.js';
 import './NavBar.scss'
 
 
 function NavBar() {
 
   const { user, isAuth} = useAuthContext()
-  
+  const [userData, setUserData] = useState()
+
   useEffect(()=>{
     const token = window.localStorage.getItem('token')
     if (token) {
-      console.log(token);
+      getUser(token)
+        .then((response)=>{
+          setUserData(response.data)
+        })
+        .catch((error)=>console.error(error.message))
     }
   })
 
@@ -33,7 +39,7 @@ function NavBar() {
             <li>
               <div className='useStyle'>
                 <SiSurveymonkey />
-                <span>Diego</span>
+                <span>{userData && userData.firs_name}</span>
               </div>
             </li>) : (
             <>
