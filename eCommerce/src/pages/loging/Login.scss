@@ -6,11 +6,16 @@
 }
 
 .form-container{
-    margin-left: 20%;
+    @include forms;
+    margin-left: 150px;
     .form{
-        margin: 10px;
+        
         .form__form-group{
             @include center;
+            .input_style{
+                @include center; 
+                @include inputform;
+            }
             margin-bottom: 20px;
         }
         .form__form-group__label{

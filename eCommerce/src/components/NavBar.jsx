@@ -26,7 +26,13 @@ function NavBar() {
 
   return (
     <nav>
-      <div>Logo</div>
+      <div className='logoContainer'>
+        <img src="https://cdn-icons-png.flaticon.com/512/6532/6532383.png" alt="" />
+      </div>
+      <div>
+        <input type="text" />
+        <button></button>
+      </div>
       <div className="nav__options">
         <ul>
           <li>
