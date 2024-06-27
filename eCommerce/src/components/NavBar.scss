@@ -1,19 +1,19 @@
 @import '../index.scss';
 @import '../sass/abstracts/colors.scss';
+@import '../sass/abstracts/mixins.scss';
 
 
 nav {
+    @include center;
     background-color: $elements-color;
     width: 100%;
     padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     box-shadow: 0px 0px 10px 0px $secondary-color;
     position: fixed;
 
     .logoContainer {
-        padding-left: 20px;
+        padding-left: 5px;
+        padding-right: 25px;
         img {
             height: 4rem;
             width: 4rem;

@@ -6,7 +6,7 @@ export default function Aside() {
       <div className='aside-container'>
         <aside className='aside'>
             <div className='aside__title'>
-                <h1>Categorias</h1>
+                <h2>Categorias</h2>
             </div>
             <div className='aside__content'>
                 <ul>

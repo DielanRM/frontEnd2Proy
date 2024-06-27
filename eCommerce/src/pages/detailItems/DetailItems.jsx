@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { getItem } from "../../services/itemServices"
 import { useParams } from "react-router-dom";
+import './DetailItems.scss'
 
 export default function DetailItems() {
 
@@ -30,9 +31,9 @@ useEffect(()=>{
                 <div className='container'>
                     <div className='row'>
                         <div className='col'>
-                            <img src={item.image} alt="" />
+                            <img src={item.image} alt="" className="image"/>
                         </div>
-                        <div className='col'>
+                        <div className='info'>
                             <h3>{item.product_name}</h3>
                             <p>{item.brand}</p>
                             <p>{item.description}</p>

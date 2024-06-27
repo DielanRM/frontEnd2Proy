@@ -5,6 +5,7 @@ import { SiSurveymonkey } from "react-icons/si"
 import { FaDoorOpen } from "react-icons/fa6";
 import { useAuthContext } from '../context/AuthContext.jsx';
 import { getUser } from '../services/userServices.js';
+import { settings } from '../services/settings.js';
 import './NavBar.scss'
 
 
@@ -22,10 +23,11 @@ function NavBar() {
         })
         .catch((error)=>console.error(error.message))
     }
-  })
+  }, [])
 
   return (
     <nav>
+      <h1>Changuito Shoping</h1>
       <div className='logoContainer'>
         <img src="https://cdn-icons-png.flaticon.com/512/6532/6532383.png" alt="" />
       </div>
@@ -46,9 +48,10 @@ function NavBar() {
           {isAuth ? (
             <li>
               <div className='useStyle'>
-                <SiSurveymonkey />
-                <span>{userData && userData.firs_name}</span>
+                <SiSurveymonkey size={28}/>
+                <span id='userName'>{userData && userData.firs_name}</span>
               </div>
+              
             </li>) : (
             <>
               <li>
@@ -64,11 +67,14 @@ function NavBar() {
             </>
           )
           }
-          { user.role === "ADMIN" ? <li>settings</li> : null}
+          { user.role === "ADMIN" ? <li id='settingsLink' onClick={settings}>settings</li> : null}
 
-          <li onClick={logOutUserService}>
-            <FaDoorOpen />
-          </li>
+          {isAuth ? (   
+            <li onClick={logOutUserService}>
+            <FaDoorOpen size={20}/>
+          </li>): 
+          (<li></li>)}
+      
         </ul>
       </div>
     </nav>
